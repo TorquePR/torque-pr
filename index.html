@@ -4,9 +4,59 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Búsqueda Torque PR</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#e63946">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Torque PR">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<style>
+:root { --bg:#0f1419; --card:#1a2332; --accent:#e63946; --text:#f1faee; --muted:#8d99ae; --border:#2d3a4a; }
+body { margin:0; font-family:-apple-system,BlinkMacSystemFont,sans-serif; background:var(--bg); color:var(--text); padding:20px; }
+.container { max-width:960px; margin:0 auto; }
+.card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:20px; }
+button { background:var(--accent); color:white; border:none; padding:12px 20px; border-radius:8px; font-size:1rem; cursor:pointer; width:100%; margin-top:8px; }
+input, select { width:100%; padding:10px; background:#0d1218; border:1px solid var(--border); border-radius:8px; color:var(--text); }
+</style>
 </head>
 <body>
-<h1>Torque PR - Cargando...</h1>
-<iframe src="Página Torque PR.html" style="width:100%;height:100vh;border:none;"></iframe>
+<div class="container">
+  <div style="text-align:center; margin-bottom:20px;">
+    <img src="logo.jpg" alt="TORQUE" style="max-width:280px; height:auto; border-radius:8px;">
+  </div>
+  <h1>Búsqueda Torque PR</h1>
+  <p style="color:var(--muted);">Acceso rápido a listados de autos en Puerto Rico.</p>
+  
+  <div class="card">
+    <h2>Ver todos los autos</h2>
+    <p><a href="https://www.clasificadosonline.com/UDTMarcaPuertoRico.asp?Marca=0&FromYear=0&ToYear=2030&LowPrice=0&HighPrice=999999999&Key=%&Area=%" target="_blank" style="color:#a8dadc;">ClasificadosOnline</a></p>
+    <p><a href="https://www.boriauto.com/" target="_blank" style="color:#a8dadc;">BoriAuto</a></p>
+    <p><a href="https://autoisla.com/" target="_blank" style="color:#a8dadc;">AutoIsla</a></p>
+    <p><a href="https://puertorico.craigslist.org/search/cta" target="_blank" style="color:#a8dadc;">Craigslist PR</a></p>
+    <p><a href="https://www.facebook.com/marketplace/sanjuan/cars/" target="_blank" style="color:#a8dadc;">Facebook Marketplace</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Búsqueda rápida</h2>
+    <input type="text" id="q" placeholder="ej. 3000GT, chocado, transmisión, SL500">
+    <button onclick="search()">Buscar</button>
+    <div id="links"></div>
+  </div>
+
+  <footer style="text-align:center; color:var(--muted); margin-top:30px; font-size:0.8rem;">
+    TORQUE · Reparación. Modificación. Detallado.<br>Verifica en CESCO antes de comprar.
+  </footer>
+</div>
+<script>
+function search() {
+  const q = document.getElementById('q').value.trim();
+  if (!q) return;
+  const links = document.getElementById('links');
+  links.innerHTML = `
+    <p style="margin-top:16px;"><a href="https://www.clasificadosonline.com/UDTMarcaPuertoRico.asp?Key=${encodeURIComponent(q)}" target="_blank" style="color:#a8dadc;">Buscar en ClasificadosOnline</a></p>
+    <p><a href="https://puertorico.craigslist.org/search/cta?query=${encodeURIComponent(q)}" target="_blank" style="color:#a8dadc;">Buscar en Craigslist</a></p>
+    <p><a href="https://www.facebook.com/marketplace/sanjuan/search/?query=${encodeURIComponent(q)}" target="_blank" style="color:#a8dadc;">Buscar en Facebook</a></p>
+  `;
+}
+</script>
 </body>
 </html>
