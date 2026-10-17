@@ -3,58 +3,200 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Búsqueda Torque PR</title>
+<title>TORQUE | Reparación · Modificación · Detallado</title>
+<meta name="description" content="Taller de reparación, modificación y detallado de autos en Puerto Rico. Especialistas en Mitsubishi, Mercedes-Benz y más.">
 <meta name="theme-color" content="#e63946">
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-<meta http-equiv="Pragma" content="no-cache">
-<meta http-equiv="Expires" content="0">
 <style>
-:root { --bg:#0f1419; --card:#1a2332; --accent:#e63946; --text:#f1faee; --muted:#8d99ae; --border:#2d3a4a; }
-body { margin:0; font-family:-apple-system,BlinkMacSystemFont,sans-serif; background:var(--bg); color:var(--text); padding:20px; }
-.container { max-width:960px; margin:0 auto; }
-.card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px; margin-bottom:20px; }
-button { background:var(--accent); color:white; border:none; padding:12px 20px; border-radius:8px; font-size:1rem; cursor:pointer; width:100%; margin-top:8px; }
-input { width:100%; padding:10px; background:#0d1218; border:1px solid var(--border); border-radius:8px; color:var(--text); }
-a { color:#a8dadc; text-decoration:none; }
-a:hover { text-decoration:underline; }
+:root {
+  --bg: #0a0e14;
+  --card: #141a24;
+  --accent: #e63946;
+  --accent2: #c0c0c0;
+  --text: #f5f5f5;
+  --muted: #9aa0a6;
+  --border: #2a3340;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+header {
+  padding: 30px 0;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+header img { max-width: 320px; height: auto; }
+.hero {
+  text-align: center;
+  padding: 60px 20px 40px;
+}
+.hero h1 { font-size: 2.2rem; margin: 0 0 10px; letter-spacing: 1px; }
+.hero .tagline { color: var(--accent2); font-size: 1.2rem; margin-bottom: 20px; }
+.services {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+  margin: 40px 0;
+}
+.service {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+}
+.service h3 { color: var(--accent); margin-top: 0; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 28px;
+  margin: 30px 0;
+}
+input, select, button {
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #0d1218;
+  color: var(--text);
+  font-size: 1rem;
+}
+button {
+  background: var(--accent);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+button:hover { opacity: 0.9; }
+a { color: #a8dadc; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.links { display: grid; gap: 10px; margin-top: 16px; }
+.contact {
+  text-align: center;
+  padding: 40px 20px;
+  background: #111820;
+  border-top: 1px solid var(--border);
+}
+footer {
+  text-align: center;
+  padding: 20px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+.lang { position: absolute; top: 15px; right: 20px; }
+.lang button { width: auto; padding: 6px 12px; margin: 0 4px; background: #243044; }
+@media (max-width: 600px) {
+  .hero h1 { font-size: 1.7rem; }
+  header img { max-width: 240px; }
+}
 </style>
 </head>
 <body>
-<div class="container">
-  <div style="text-align:center; margin-bottom:20px;">
-    <img src="Logo.png" alt="TORQUE" style="max-width:280px; height:auto; border-radius:8px;">
-  </div>
-  <h1>Búsqueda Torque PR</h1>
-  <p style="color:var(--muted);">Acceso rápido a listados de autos en Puerto Rico.</p>
-
-  <div class="card">
-    <h2>Ver todos los autos</h2>
-    <p><a href="https://www.clasificadosonline.com/UDTMarcaPuertoRico.asp?Marca=0&FromYear=0&ToYear=2030&LowPrice=0&HighPrice=999999999&Key=%&Area=%" target="_blank">ClasificadosOnline</a></p>
-    <p><a href="https://www.boriauto.com/" target="_blank">BoriAuto</a></p>
-    <p><a href="https://autoisla.com/" target="_blank">AutoIsla</a></p>
-    <p><a href="https://puertorico.craigslist.org/search/cta" target="_blank">Craigslist PR</a></p>
-    <p><a href="https://www.facebook.com/marketplace/sanjuan/cars/" target="_blank">Facebook Marketplace</a></p>
-  </div>
-
-  <div class="card">
-    <h2>Búsqueda rápida</h2>
-    <input type="text" id="q" placeholder="ej. 3000GT, chocado, transmisión, SL500">
-    <button onclick="search()">Buscar</button>
-    <div id="links"></div>
-  </div>
-
-  <footer style="text-align:center; color:var(--muted); margin-top:30px; font-size:0.8rem;">
-    TORQUE · Reparación. Modificación. Detallado.<br>Verifica en CESCO antes de comprar.
-  </footer>
+<div class="lang">
+  <button onclick="setLang('es')">ES</button>
+  <button onclick="setLang('en')">EN</button>
 </div>
+
+<header>
+  <img src="Logo.png" alt="TORQUE">
+</header>
+
+<section class="hero">
+  <h1 id="title">TORQUE</h1>
+  <p class="tagline" id="tagline">Reparación. Modificación. Detallado.</p>
+  <p id="sub">Taller especializado en Puerto Rico · Mitsubishi · Mercedes-Benz · Performance</p>
+</section>
+
+<div class="container">
+  <div class="services">
+    <div class="service">
+      <h3 id="s1t">Reparación</h3>
+      <p id="s1">Diagnóstico, motor, transmisión y suspensión. Trabajo honesto y de calidad.</p>
+    </div>
+    <div class="service">
+      <h3 id="s2t">Modificación</h3>
+      <p id="s2">Coilovers, turbos, swaps, fabricación custom y mejoras de rendimiento.</p>
+    </div>
+    <div class="service">
+      <h3 id="s3t">Detallado</h3>
+      <p id="s3">Limpieza profunda, corrección de pintura y protección para que tu carro luzca nuevo.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2 id="searchTitle">Buscar Autos en Puerto Rico</h2>
+    <p id="searchSub">Acceso rápido a los principales clasificados de la isla.</p>
+    <input type="text" id="q" placeholder="ej. 3000GT, chocado, transmisión, SL500, Eclipse">
+    <button onclick="search()">Buscar</button>
+    <div class="links" id="links"></div>
+    <div style="margin-top:20px;">
+      <a href="https://www.clasificadosonline.com/UDTMarcaPuertoRico.asp?Marca=0&FromYear=0&ToYear=2030&LowPrice=0&HighPrice=999999999&Key=%&Area=%" target="_blank">Ver todos en ClasificadosOnline</a><br>
+      <a href="https://www.boriauto.com/" target="_blank">BoriAuto</a><br>
+      <a href="https://puertorico.craigslist.org/search/cta" target="_blank">Craigslist PR</a><br>
+      <a href="https://www.facebook.com/marketplace/sanjuan/cars/" target="_blank">Facebook Marketplace</a>
+    </div>
+  </div>
+</div>
+
+<section class="contact">
+  <h2 id="contactTitle">Contacto</h2>
+  <p>WhatsApp · Instagram · Facebook</p>
+  <p style="margin-top:10px;">Puerto Rico</p>
+</section>
+
+<footer>
+  TORQUE · Reparación. Modificación. Detallado.<br>
+  Verifica siempre en CESCO antes de comprar un vehículo.
+</footer>
+
 <script>
+const texts = {
+  es: {
+    title: "TORQUE",
+    tagline: "Reparación. Modificación. Detallado.",
+    sub: "Taller especializado en Puerto Rico · Mitsubishi · Mercedes-Benz · Performance",
+    s1t: "Reparación", s1: "Diagnóstico, motor, transmisión y suspensión. Trabajo honesto y de calidad.",
+    s2t: "Modificación", s2: "Coilovers, turbos, swaps, fabricación custom y mejoras de rendimiento.",
+    s3t: "Detallado", s3: "Limpieza profunda, corrección de pintura y protección para que tu carro luzca nuevo.",
+    searchTitle: "Buscar Autos en Puerto Rico",
+    searchSub: "Acceso rápido a los principales clasificados de la isla.",
+    contactTitle: "Contacto"
+  },
+  en: {
+    title: "TORQUE",
+    tagline: "Repair. Modification. Detailing.",
+    sub: "Specialized shop in Puerto Rico · Mitsubishi · Mercedes-Benz · Performance",
+    s1t: "Repair", s1: "Diagnostics, engine, transmission and suspension. Honest, quality work.",
+    s2t: "Modification", s2: "Coilovers, turbos, swaps, custom fabrication and performance upgrades.",
+    s3t: "Detailing", s3: "Deep cleaning, paint correction and protection so your car looks new.",
+    searchTitle: "Search Cars in Puerto Rico",
+    searchSub: "Quick access to the main classifieds on the island.",
+    contactTitle: "Contact"
+  }
+};
+
+function setLang(lang) {
+  const t = texts[lang];
+  for (const [k, v] of Object.entries(t)) {
+    const el = document.getElementById(k);
+    if (el) el.textContent = v;
+  }
+}
+
 function search() {
   const q = document.getElementById('q').value.trim();
   if (!q) return;
   document.getElementById('links').innerHTML = `
-    <p style="margin-top:16px;"><a href="https://www.clasificadosonline.com/UDTMarcaPuertoRico.asp?Key=${encodeURIComponent(q)}" target="_blank">Buscar en ClasificadosOnline</a></p>
-    <p><a href="https://puertorico.craigslist.org/search/cta?query=${encodeURIComponent(q)}" target="_blank">Buscar en Craigslist</a></p>
-    <p><a href="https://www.facebook.com/marketplace/sanjuan/search/?query=${encodeURIComponent(q)}" target="_blank">Buscar en Facebook</a></p>
+    <a href="https://www.clasificadosonline.com/UDTMarcaPuertoRico.asp?Key=${encodeURIComponent(q)}" target="_blank">Buscar en ClasificadosOnline</a>
+    <a href="https://puertorico.craigslist.org/search/cta?query=${encodeURIComponent(q)}" target="_blank">Buscar en Craigslist</a>
+    <a href="https://www.facebook.com/marketplace/sanjuan/search/?query=${encodeURIComponent(q)}" target="_blank">Buscar en Facebook Marketplace</a>
   `;
 }
 </script>
