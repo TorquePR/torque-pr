@@ -23,11 +23,14 @@ h2{color:var(--accent);border-bottom:2px solid var(--accent);padding-bottom:8px;
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:20px}
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px}
 .card h3{margin-top:0;color:var(--accent)}
-.placeholder{background:#1a2332;height:160px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted);margin-bottom:12px}
+.price{font-size:1.4rem;font-weight:700;color:#a8dadc;margin:10px 0}
+.placeholder{background:#1a2332;height:140px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:var(--muted);margin-bottom:12px}
 .contact{text-align:center;background:#111820;padding:50px 20px}
 footer{text-align:center;padding:20px;color:var(--muted);font-size:.85rem}
 .lang{position:absolute;top:15px;right:15px}
 .lang button{background:#243044;border:none;color:white;padding:6px 12px;border-radius:6px;margin:0 3px;cursor:pointer}
+.paypal-btn{background:#ffc439;color:#003087;border:none;padding:12px 20px;border-radius:8px;font-weight:700;cursor:pointer;width:100%;margin-top:10px}
+.paypal-btn:hover{opacity:0.9}
 </style>
 </head>
 <body>
@@ -61,81 +64,71 @@ footer{text-align:center;padding:20px;color:var(--muted);font-size:.85rem}
     <div class="grid">
       <div class="card">
         <h3 id="s1t">Reparación</h3>
-        <p id="s1">Motor, transmisión, suspensión y diagnóstico. Trabajo honesto y de calidad.</p>
+        <p id="s1">Motor, transmisión, suspensión y diagnóstico.</p>
+        <div class="price">Desde $150</div>
+        <button class="paypal-btn" onclick="pay('Reparación','150.00')">Pagar con PayPal</button>
       </div>
       <div class="card">
         <h3 id="s2t">Modificación</h3>
-        <p id="s2">Coilovers, turbos, swaps, fabricación custom y mejoras de rendimiento.</p>
+        <p id="s2">Coilovers, turbos, swaps y mejoras de rendimiento.</p>
+        <div class="price">Desde $300</div>
+        <button class="paypal-btn" onclick="pay('Modificación','300.00')">Pagar con PayPal</button>
       </div>
       <div class="card">
         <h3 id="s3t">Detallado</h3>
-        <p id="s3">Limpieza profunda, corrección de pintura y protección.</p>
+        <p id="s3">Limpieza profunda y corrección de pintura.</p>
+        <div class="price">Desde $120</div>
+        <button class="paypal-btn" onclick="pay('Detallado','120.00')">Pagar con PayPal</button>
       </div>
     </div>
   </section>
 
   <section id="piezas">
     <h2 id="pTitle">Piezas Disponibles</h2>
-    <div class="grid" id="partsGrid">
+    <div class="grid">
       <div class="card">
-        <div class="placeholder">Foto de pieza</div>
+        <div class="placeholder">Foto</div>
         <h3>Transmisión 3000GT VR4</h3>
         <p>Usada · Buena condición</p>
-        <strong>$800</strong>
+        <div class="price">$800</div>
+        <button class="paypal-btn" onclick="pay('Transmisión 3000GT VR4','800.00')">Pagar con PayPal</button>
       </div>
       <div class="card">
-        <div class="placeholder">Foto de pieza</div>
+        <div class="placeholder">Foto</div>
         <h3>Motor SL500</h3>
         <p>Para piezas / rebuild</p>
-        <strong>$1,200</strong>
+        <div class="price">$1,200</div>
+        <button class="paypal-btn" onclick="pay('Motor SL500','1200.00')">Pagar con PayPal</button>
       </div>
       <div class="card">
-        <div class="placeholder">Agregar más piezas</div>
-        <h3>Próximamente</h3>
-        <p>Sube fotos y detalles aquí</p>
+        <div class="placeholder">Agregar pieza</div>
+        <h3>Más piezas pronto</h3>
+        <p>Sube fotos y precios</p>
       </div>
     </div>
   </section>
 
   <section id="trabajos">
-    <h2 id="vTitle">Videos de Trabajos</h2>
+    <h2>Videos de Trabajos</h2>
     <div class="grid">
-      <div class="card">
-        <div class="placeholder">Video 1</div>
-        <h3>Restauración SL500</h3>
-        <p>Proceso de trabajo</p>
-      </div>
-      <div class="card">
-        <div class="placeholder">Video 2</div>
-        <h3>Swap 3000GT</h3>
-        <p>Antes y después</p>
-      </div>
+      <div class="card"><div class="placeholder">Video</div><h3>Restauración SL500</h3></div>
+      <div class="card"><div class="placeholder">Video</div><h3>Swap 3000GT</h3></div>
     </div>
-    <p style="margin-top:16px;color:var(--muted)">Agrega links de YouTube o TikTok cuando tengas los videos.</p>
   </section>
 
   <section id="fotos">
-    <h2 id="fTitle">Fotos</h2>
+    <h2>Fotos</h2>
     <div class="grid">
-      <div class="card">
-        <div class="placeholder">Galería 1</div>
-        <p>Trabajos realizados</p>
-      </div>
-      <div class="card">
-        <div class="placeholder">Galería 2</div>
-        <p>Piezas en venta</p>
-      </div>
-      <div class="card">
-        <div class="placeholder">Galería 3</div>
-        <p>Taller</p>
-      </div>
+      <div class="card"><div class="placeholder">Galería</div><p>Trabajos</p></div>
+      <div class="card"><div class="placeholder">Galería</div><p>Piezas</p></div>
+      <div class="card"><div class="placeholder">Galería</div><p>Taller</p></div>
     </div>
   </section>
 
 </div>
 
 <section class="contact" id="contacto">
-  <h2 id="cTitle">Contacto</h2>
+  <h2>Contacto</h2>
   <p>WhatsApp · Instagram · Facebook</p>
   <p>Puerto Rico</p>
 </section>
@@ -146,33 +139,15 @@ footer{text-align:center;padding:20px;color:var(--muted);font-size:.85rem}
 </footer>
 
 <script>
+function pay(item, amount) {
+  const email = 'TU_EMAIL_PAYPAL@gmail.com';
+  const url = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=${encodeURIComponent(email)}&item_name=${encodeURIComponent(item)}&amount=${amount}&currency_code=USD`;
+  window.open(url, '_blank');
+}
+
 const texts = {
-  es: {
-    mainTitle: "TORQUE",
-    tagline: "Reparación. Modificación. Detallado.",
-    sub: "Taller especializado en Puerto Rico",
-    sTitle: "Servicios",
-    s1t: "Reparación", s1: "Motor, transmisión, suspensión y diagnóstico. Trabajo honesto y de calidad.",
-    s2t: "Modificación", s2: "Coilovers, turbos, swaps, fabricación custom y mejoras de rendimiento.",
-    s3t: "Detallado", s3: "Limpieza profunda, corrección de pintura y protección.",
-    pTitle: "Piezas Disponibles",
-    vTitle: "Videos de Trabajos",
-    fTitle: "Fotos",
-    cTitle: "Contacto"
-  },
-  en: {
-    mainTitle: "TORQUE",
-    tagline: "Repair. Modification. Detailing.",
-    sub: "Specialized shop in Puerto Rico",
-    sTitle: "Services",
-    s1t: "Repair", s1: "Engine, transmission, suspension and diagnostics. Honest quality work.",
-    s2t: "Modification", s2: "Coilovers, turbos, swaps, custom fabrication and performance upgrades.",
-    s3t: "Detailing", s3: "Deep cleaning, paint correction and protection.",
-    pTitle: "Available Parts",
-    vTitle: "Work Videos",
-    fTitle: "Photos",
-    cTitle: "Contact"
-  }
+  es: { mainTitle:"TORQUE", tagline:"Reparación. Modificación. Detallado.", sub:"Taller especializado en Puerto Rico", sTitle:"Servicios", s1t:"Reparación", s1:"Motor, transmisión, suspensión y diagnóstico.", s2t:"Modificación", s2:"Coilovers, turbos, swaps y mejoras de rendimiento.", s3t:"Detallado", s3:"Limpieza profunda y corrección de pintura.", pTitle:"Piezas Disponibles" },
+  en: { mainTitle:"TORQUE", tagline:"Repair. Modification. Detailing.", sub:"Specialized shop in Puerto Rico", sTitle:"Services", s1t:"Repair", s1:"Engine, transmission, suspension and diagnostics.", s2t:"Modification", s2:"Coilovers, turbos, swaps and performance upgrades.", s3t:"Detailing", s3:"Deep cleaning and paint correction.", pTitle:"Available Parts" }
 };
 function setLang(l){
   const t = texts[l];
