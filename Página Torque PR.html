@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Búsqueda Torque PR</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#e63946">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Torque PR">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<style>
+:root {
+  --bg: #0f1419;
+  --card: #1a2332;
+  --accent: #e63946;
+  --accent2: #a8dadc;
+  --text: #f1faee;
+  --muted: #8d99ae;
+  --border: #2d3a4a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+  padding: 20px;
+}
+.container { max-width: 960px; margin: 0 auto; }
+h1 { margin: 0 0 8px; font-size: 1.8rem; }
+.subtitle { color: var(--muted); margin-bottom: 24px; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+label { display: block; font-size: 0.85rem; color: var(--muted); margin-bottom: 4px; margin-top: 12px; }
+input, select {
+  width: 100%;
+  padding: 10px 12px;
+  background: #0d1218;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 1rem;
+}
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+button {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 16px;
+  width: 100%;
+}
+button:hover { opacity: 0.9; }
+.presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+.preset {
+  background: #243044;
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+.preset:hover { background: var(--accent); }
+.results { margin-top: 20px; }
+.link-card {
+  background: #121a24;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.link-card a {
+  color: var(--accent2);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+.link-card a:hover { text-decoration: underline; }
+.site { color: var(--muted); font-size: 0.8rem; }
+.note { font-size: 0.85rem; color: var(--muted); margin-top: 12px; }
+.section-title { margin: 24px 0 12px; font-size: 1.3rem; }
+.grid-links { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 600px) {
+  .row, .row-3, .grid-links { grid-template-columns: 1fr; }
+}
+footer { text-align: center; color: var(--muted); font-size: 0.8rem; margin-top: 30px; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1 id="mainTitle">Búsqueda Torque PR</h1>
+  <p class="subtitle" id="mainSubtitle">Acceso rápido a todos los listados y búsquedas filtradas de autos en Puerto Rico.</p>
+
+  <div style="margin-bottom:16px; text-align:right;">
+    <button id="langES" onclick="setLang('es')" style="width:auto; padding:6px 14px; margin-right:6px; background:#e63946;">ES</button>
+    <button id="langEN" onclick="setLang('en')" style="width:auto; padding:6px 14px; background:#243044;">EN</button>
+  </div>
+
+  <button id="installBtn" style="display:none; margin-bottom:16px; background:#a8dadc; color:#0f1419; font-weight:600; width:auto; padding:12px 24px;">
+    Instalar App
+  </button>
+  <div id="iosInstall" style="display:none; background:#1a2332; border:1px solid #2d3a4a; border-radius:10px; padding:14px; margin-bottom:16px; font-size:0.9rem;">
+    <strong>Instalar en iPhone:</strong><br>
+    1. Toca el botón de <strong>compartir</strong> (cuadrado con flecha ↑)<br>
+    2. Baja y selecciona <strong>“Agregar a pantalla de inicio”</strong><br>
+    3. Confirma el nombre
+  </div>
+
+  <!-- VER TODOS -->
+  <div class="card">
+    <h2 class="section-title" style="margin-top:0">Ver todos los autos</h2>
+    <p class="note" style="margin-top:0">Abre el inventario completo de cada sitio (sin filtros).</p>
+    <div class="grid-links">
+      <div class="link-card">
+        <div>
+          <a href="https://www.clasificadosonline.com/UDTMarcaPuertoRico.asp?Marca=0&FromYear=0&ToYear=2030&LowPrice=0&HighPrice=999999999&Key=%&Area=%" target="_blank" rel="noopener">ClasificadosOnline</a>
+          <div class="site">Todos los carros · mayor volumen</div>
+        </div>
+        <span>→</span>
+      </div>
+      <div class="link-card">
+        <div>
+          <a href="https://www.boriauto.com/" target="_blank" rel="noopener">BoriAuto</a>
+          <div class="site">Todos los usados · filtros por municipio</div>
+        </div>
+        <span>→</span>
+      </div>
+      <div class="link-card">
+        <div>
+          <a href="https://autoisla.com/" target="_blank" rel="noopener">AutoIsla</a>
+          <div class="site">Solo dealers verificados</div>
+        </div>
+        <span>→</span>
+      </div>
+      <div class="link-card">
+        <div>
+          <a href="https://www.clasificadosisla.com/autos/" target="_blank" rel="noopener">ClasificadosIsla</a>
+          <div class="site">Clasificados locales</div>
+        </div>
+        <span>→</span>
+      </div>
+      <div class="link-card">
+        <div>
+          <a href="https://puertorico.craigslist.org/search/cta" target="_blank" rel="noopener">Craigslist PR</a>
+          <div class="site">Todos los carros de particulares</div>
+        </div>
+        <span>→</span>
+      </div>
+      <div class="link-card">
+        <div>
+          <a href="https://www.facebook.com/marketplace/sanjuan/cars/" target="_blank" rel="noopener">Facebook Marketplace</a>
+          <div class="site">Área San Juan · ajusta radio</div>
+        </div>
+        <span>→</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BÚSQUEDA FILTRADA -->
+  <div class="card">
+    <h2 class="section-title" style="margin-top:0">Búsqueda filtrada</h2>
+    <div class="presets" id="presets">
+      <div class="preset" data-make="Mitsubishi" data-model="3000GT" data-yearfrom="1990" data-yearto="2000" data-price="8000">3000GT</div>
+      <div class="preset" data-make="Mitsubishi" data-model="Eclipse" data-yearfrom="1990" data-yearto="2005" data-price="6000">Eclipse</div>
+      <div class="preset" data-make="Mercedes-Benz" data-model="SL" data-yearfrom="1990" data-yearto="2010" data-price="15000">Mercedes SL</div>
+      <div class="preset" data-make="" data-model="transmisión" data-yearfrom="" data-yearto="" data-price="3000">Problemas transmisión</div>
+      <div class="preset" data-make="" data-model="para piezas" data-yearfrom="" data-yearto="" data-price="2000">Para piezas</div>
+      <div class="preset" data-make="Toyota" data-model="" data-yearfrom="2000" data-yearto="2015" data-price="8000">Toyota baratos</div>
+      <div class="preset" data-make="Honda" data-model="" data-yearfrom="2005" data-yearto="2018" data-price="7000">Honda baratos</div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Marca</label>
+        <select id="make">
+          <option value="">Cualquiera</option>
+          <option value="Mitsubishi">Mitsubishi</option>
+          <option value="Mercedes-Benz">Mercedes-Benz</option>
+          <option value="Toyota">Toyota</option>
+          <option value="Honda">Honda</option>
+          <option value="Ford">Ford</option>
+          <option value="Nissan">Nissan</option>
+          <option value="BMW">BMW</option>
+          <option value="Chevrolet">Chevrolet</option>
+          <option value="Dodge">Dodge</option>
+          <option value="Jeep">Jeep</option>
+          <option value="Hyundai">Hyundai</option>
+          <option value="Kia">Kia</option>
+          <option value="Lexus">Lexus</option>
+          <option value="Audi">Audi</option>
+          <option value="Volkswagen">Volkswagen</option>
+          <option value="Porsche">Porsche</option>
+          <option value="RAM">RAM</option>
+          <option value="Mazda">Mazda</option>
+          <option value="Subaru">Subaru</option>
+          <option value="Acura">Acura</option>
+          <option value="Infiniti">Infiniti</option>
+          <option value="Cadillac">Cadillac</option>
+          <option value="GMC">GMC</option>
+          <option value="Buick">Buick</option>
+          <option value="Chrysler">Chrysler</option>
+          <option value="Lincoln">Lincoln</option>
+          <option value="Volvo">Volvo</option>
+          <option value="Jaguar">Jaguar</option>
+          <option value="Land Rover">Land Rover</option>
+          <option value="Mini">Mini</option>
+          <option value="Fiat">Fiat</option>
+          <option value="Alfa Romeo">Alfa Romeo</option>
+          <option value="Suzuki">Suzuki</option>
+          <option value="Isuzu">Isuzu</option>
+          <option value="Saab">Saab</option>
+          <option value="Pontiac">Pontiac</option>
+          <option value="Oldsmobile">Oldsmobile</option>
+          <option value="Saturn">Saturn</option>
+          <option value="Scion">Scion</option>
+          <option value="Genesis">Genesis</option>
+          <option value="Tesla">Tesla</option>
+          <option value="Rivian">Rivian</option>
+          <option value="Lucid">Lucid</option>
+          <option value="Maserati">Maserati</option>
+          <option value="Ferrari">Ferrari</option>
+          <option value="Lamborghini">Lamborghini</option>
+          <option value="Bentley">Bentley</option>
+          <option value="Rolls-Royce">Rolls-Royce</option>
+          <option value="Aston Martin">Aston Martin</option>
+          <option value="McLaren">McLaren</option>
+          <option value="Bugatti">Bugatti</option>
+        </select>
+      </div>
+      <div>
+        <label>Modelo / Palabra clave</label>
+        <input type="text" id="model" placeholder="ej. 3000GT, chocado, dañado, necesita trabajo, transmisión, motor malo">
+      </div>
+    </div>
+
+    <div class="row-3">
+      <div>
+        <label>Año desde</label>
+        <input type="number" id="yearFrom" placeholder="1990" min="1980" max="2026">
+      </div>
+      <div>
+        <label>Año hasta</label>
+        <input type="number" id="yearTo" placeholder="2026" min="1980" max="2026">
+      </div>
+      <div>
+        <label>Precio máximo ($)</label>
+        <input type="number" id="maxPrice" placeholder="10000" min="0">
+      </div>
+    </div>
+
+    <button onclick="generateLinks()">Generar enlaces filtrados</button>
+    <button onclick="clearFilters()" style="background:#8d99ae; margin-top:8px;">Limpiar filtros</button>
+    <p class="note">Estos abren búsquedas con tus filtros. Para ver todo, usa los botones de arriba.</p>
+  </div>
+
+  <div class="results" id="results"></div>
+
+  <!-- GENERADOR DE ANUNCIOS -->
+  <div class="card" style="margin-top: 24px;">
+    <h2 class="section-title" style="margin-top:0">Generador de Anuncios (Piezas / Carros)</h2>
+    <p class="note" style="margin-top:0">Llena una vez. Genera textos en inglés y español listos para copiar.</p>
+
+    <div class="row">
+      <div>
+        <label>Título / Qué es</label>
+        <input type="text" id="adTitle" placeholder="ej. Transmisión 3000GT VR4, Motor SL500, etc.">
+      </div>
+      <div>
+        <label>Precio ($)</label>
+        <input type="number" id="adPrice" placeholder="500">
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Condición</label>
+        <select id="adCondition">
+          <option value="Used">Usada / Used</option>
+          <option value="Good">Buena / Good</option>
+          <option value="Excellent">Excelente / Excellent</option>
+          <option value="For Parts">Para piezas / For Parts</option>
+          <option value="New">Nueva / New</option>
+        </select>
+      </div>
+      <div>
+        <label>Ubicación</label>
+        <input type="text" id="adLocation" placeholder="Juana Díaz, PR" value="Puerto Rico">
+      </div>
+    </div>
+
+    <label>Descripción / Detalles</label>
+    <textarea id="adDesc" rows="3" style="width:100%; padding:10px 12px; background:#0d1218; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:1rem; resize:vertical;" placeholder="Año, millaje, qué incluye, problemas, etc."></textarea>
+
+    <button onclick="generateAds()" style="margin-top:16px;">Generar Anuncios (EN + ES)</button>
+
+    <div id="adResults" style="margin-top:20px;"></div>
+  </div>
+
+  <!-- CRITERIOS DE ALERTA -->
+  <div class="card" style="margin-top: 24px;">
+    <h2 class="section-title" style="margin-top:0">Criterios de Alerta</h2>
+    <p class="note" style="margin-top:0">Guarda búsquedas importantes. Luego revísalas con un toque cuando quieras ver si hay algo nuevo.</p>
+
+    <div class="row">
+      <div>
+        <label>Nombre del criterio</label>
+        <input type="text" id="alertName" placeholder="ej. 3000GT barato, SL500, transmisión">
+      </div>
+      <div>
+        <label>Precio máximo ($)</label>
+        <input type="number" id="alertPrice" placeholder="5000">
+      </div>
+    </div>
+
+    <div class="row">
+      <div>
+        <label>Marca</label>
+        <select id="alertMake">
+          <option value="">Cualquiera</option>
+          <option value="Mitsubishi">Mitsubishi</option>
+          <option value="Mercedes-Benz">Mercedes-Benz</option>
+          <option value="Toyota">Toyota</option>
+          <option value="Honda">Honda</option>
+          <option value="Ford">Ford</option>
+          <option value="Nissan">Nissan</option>
+          <option value="BMW">BMW</option>
+          <option value="Chevrolet">Chevrolet</option>
+          <option value="Dodge">Dodge</option>
+          <option value="Jeep">Jeep</option>
+        </select>
+      </div>
+      <div>
+        <label>Modelo / Palabra clave</label>
+        <input type="text" id="alertModel" placeholder="3000GT, Eclipse, SL, transmisión...">
+      </div>
+    </div>
+
+    <button onclick="saveAlert()" style="margin-top:12px;">Guardar Criterio</button>
+
+    <div id="alertList" style="margin-top:20px;"></div>
+  </div>
+
+  <!-- PLANTILLAS DE ANUNCIOS -->
+  <div class="card" style="margin-top: 24px;">
+    <h2 class="section-title" style="margin-top:0">Plantillas de Anuncios</h2>
+    <p class="note" style="margin-top:0">Guarda anuncios que usas seguido para reutilizarlos rápido.</p>
+
+    <div class="row">
+      <div>
+        <label>Nombre de la plantilla</label>
+        <input type="text" id="templateName" placeholder="ej. Transmisión 3000GT, Motor SL500">
+      </div>
+      <div>
+        <label>Precio por defecto ($)</label>
+        <input type="number" id="templatePrice" placeholder="800">
+      </div>
+    </div>
+
+    <label>Texto de la plantilla</label>
+    <textarea id="templateText" rows="3" style="width:100%; padding:10px 12px; background:#0d1218; border:1px solid var(--border); border-radius:8px; color:var(--text); font-size:1rem; resize:vertical;" placeholder="Descripción que siempre usas para este tipo de pieza..."></textarea>
+
+    <button onclick="saveTemplate()" style="margin-top:12px;">Guardar Plantilla</button>
+
+    <div id="templateList" style="margin-top:20px;"></div>
+  </div>
+
+  <!-- CHECKLIST DE PUBLICACIÓN -->
+  <div class="card" style="margin-top: 24px;">
+    <h2 class="section-title" style="margin-top:0">Checklist de Publicación</h2>
+    <p class="note" style="margin-top:0">Marca dónde ya publicaste el anuncio para no olvidar plataformas.</p>
+
+    <div id="checklist" style="display:grid; gap:10px;">
+      <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+        <input type="checkbox" id="chkFB" onchange="saveChecklist()"> Facebook Marketplace
+      </label>
+      <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+        <input type="checkbox" id="chkCO" onchange="saveChecklist()"> ClasificadosOnline
+      </label>
+      <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+        <input type="checkbox" id="chkWA" onchange="saveChecklist()"> WhatsApp Status / Grupos
+      </label>
+      <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+        <input type="checkbox" id="chkIG" onchange="saveChecklist()"> Instagram
+      </label>
+      <label style="display:flex; align-items:center; gap:10px; cursor:pointer;">
+        <input type="checkbox" id="chkTT" onchange="saveChecklist()"> TikTok
+      </label>
+    </div>
+
+    <button onclick="resetChecklist()" style="background:#8d99ae; margin-top:16px;">Reiniciar Checklist</button>
+  </div>
+
+  <footer>
+    Sistema de búsqueda Torque PR · Puerto Rico<br>
+    Verifica siempre en CESCO antes de comprar.
+  </footer>
+</div>
+
+<!-- Botón flotante de WhatsApp -->
+<a href="https://wa.me/" target="_blank" rel="noopener" id="whatsappBtn" title="Abrir WhatsApp">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
+<!-- Botón flotante de Facebook -->
+<a href="https://www.facebook.com/marketplace/sanjuan/cars/" target="_blank" rel="noopener" id="facebookBtn" title="Abrir Facebook Marketplace">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="white">
+    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+  </svg>
+</a>
+
+<!-- Botón flotante de Instagram -->
+<a href="https://www.instagram.com/" target="_blank" rel="noopener" id="instagramBtn" title="Abrir Instagram">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="white">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+  </svg>
+</a>
+
+<!-- Botón flotante de TikTok -->
+<a href="https://www.tiktok.com/" target="_blank" rel="noopener" id="tiktokBtn" title="Abrir TikTok">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="white">
+    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
+  </svg>
+</a>
+
+<!-- Botón flotante de YouTube -->
+<a href="https://www.youtube.com/" target="_blank" rel="noopener" id="youtubeBtn" title="Abrir YouTube">
+  <svg viewBox="0 0 24 24" width="28" height="28" fill="white">
+    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+  </svg>
+</a>
+
+<style>
+#whatsappBtn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+#whatsappBtn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+#whatsappBtn svg {
+  display: block;
+}
+
+#facebookBtn {
+  position: fixed;
+  bottom: 24px;
+  right: 92px;
+  width: 56px;
+  height: 56px;
+  background: #1877F2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+#facebookBtn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+#facebookBtn svg {
+  display: block;
+}
+
+#instagramBtn {
+  position: fixed;
+  bottom: 24px;
+  right: 160px;
+  width: 56px;
+  height: 56px;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+#instagramBtn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+#instagramBtn svg {
+  display: block;
+}
+
+#tiktokBtn {
+  position: fixed;
+  bottom: 24px;
+  right: 228px;
+  width: 56px;
+  height: 56px;
+  background: #000000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+#tiktokBtn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+#tiktokBtn svg {
+  display: block;
+}
+
+#youtubeBtn {
+  position: fixed;
+  bottom: 24px;
+  right: 296px;
+  width: 56px;
+  height: 56px;
+  background: #FF0000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 1000;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+#youtubeBtn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+}
+#youtubeBtn svg {
+  display: block;
+}
+</style>
+
+<script>
+const MAKE_IDS = {
+  "Mitsubishi": "35",
+  "Mercedes-Benz": "33",
+  "Toyota": "49",
+  "Honda": "25",
+  "Ford": "22",
+  "Nissan": "36",
+  "BMW": "7",
+  "Chevrolet": "11",
+  "Dodge": "17",
+  "Jeep": "29",
+  "Hyundai": "26",
+  "Kia": "31",
+  "Lexus": "30",
+  "Audi": "6",
+  "Volkswagen": "50",
+  "Porsche": "40",
+  "RAM": "89",
+  "Mazda": "38",
+  "Subaru": "54"
+};
+
+document.querySelectorAll('.preset').forEach(el => {
+  el.addEventListener('click', () => {
+    document.getElementById('make').value = el.dataset.make || "";
+    document.getElementById('model').value = el.dataset.model || "";
+    document.getElementById('yearFrom').value = el.dataset.yearfrom || "";
+    document.getElementById('yearTo').value = el.dataset.yearto || "";
+    document.getElementById('maxPrice').value = el.dataset.price || "";
+    generateLinks();
+  });
+});
+
+function setLang(lang) {
+  const esBtn = document.getElementById('langES');
+  const enBtn = document.getElementById('langEN');
+  if (!esBtn || !enBtn) return;
+  if (lang === 'es') {
+    esBtn.style.background = '#e63946';
+    enBtn.style.background = '#243044';
+    document.getElementById('mainTitle').textContent = 'Búsqueda Torque PR';
+    document.getElementById('mainSubtitle').textContent = 'Acceso rápido a todos los listados y búsquedas filtradas de autos en Puerto Rico.';
+    const titles = document.querySelectorAll('.section-title');
+    if (titles[0]) titles[0].textContent = 'Ver todos los autos';
+    if (titles[1]) titles[1].textContent = 'Búsqueda filtrada';
+  } else {
+    enBtn.style.background = '#e63946';
+    esBtn.style.background = '#243044';
+    document.getElementById('mainTitle').textContent = 'Torque PR Search';
+    document.getElementById('mainSubtitle').textContent = 'Quick access to all listings and filtered car searches in Puerto Rico.';
+    const titles = document.querySelectorAll('.section-title');
+    if (titles[0]) titles[0].textContent = 'View All Cars';
+    if (titles[1]) titles[1].textContent = 'Filtered Search';
+  }
+  localStorage.setItem('torqueLang', lang);
+}
+
+// Load saved language on start
+document.addEventListener('DOMContentLoaded', () => {
+  const savedLang = localStorage.getItem('torqueLang') || 'es';
+  setLang(savedLang);
+});
+
+function generateLinks() {
+  const make = document.getElementById('make').value.trim();
+  const model = document.getElementById('model').value.trim();
+  const yearFrom = document.getElementById('yearFrom').value || "0";
+  const yearTo = document.getElementById('yearTo').value || "2030";
+  const maxPrice = document.getElementById('maxPrice').value || "999999";
+  const query = [make, model].filter(Boolean).join(" ").trim();
+
+  const results = document.getElementById('results');
+  results.innerHTML = "<h2>Enlaces filtrados</h2>";
+
+  if (!query && !make) {
+    results.innerHTML = "<p class='note'>Ingresa marca o modelo para generar búsquedas filtradas. Para ver todo, usa la sección de arriba.</p>";
+    return;
+  }
+
+  // ClasificadosOnline
+  let coUrl = "https://www.clasificadosonline.com/UDTMarcaPuertoRico.asp?";
+  const coParams = [];
+  if (make && MAKE_IDS[make]) coParams.push("Marca=" + MAKE_IDS[make]);
+  else coParams.push("Marca=0");
+  coParams.push("FromYear=" + yearFrom);
+  coParams.push("ToYear=" + yearTo);
+  coParams.push("LowPrice=0");
+  coParams.push("HighPrice=" + maxPrice);
+  coParams.push("Key=" + (model ? encodeURIComponent(model) : "%"));
+  coParams.push("Area=%");
+  coUrl += coParams.join("&");
+  addLink("ClasificadosOnline", coUrl, "Filtrado por marca/año/precio");
+
+  // BoriAuto
+  let baUrl = "https://www.boriauto.com/carros";
+  if (make) {
+    baUrl += "/" + make.toLowerCase().replace(/\s+/g, "-").replace("mercedes-benz", "mercedes");
+  }
+  const baParams = [];
+  if (model) baParams.push("q=" + encodeURIComponent(model));
+  if (maxPrice && maxPrice !== "999999") baParams.push("maxPrice=" + maxPrice);
+  if (baParams.length) baUrl += "?" + baParams.join("&");
+  addLink("BoriAuto", baUrl, "Filtrado");
+
+  // AutoIsla
+  let aiUrl = "https://autoisla.com/";
+  if (query) aiUrl = "https://autoisla.com/search?q=" + encodeURIComponent(query);
+  addLink("AutoIsla", aiUrl, "Dealers · búsqueda");
+
+  // ClasificadosIsla
+  let ciUrl = "https://www.clasificadosisla.com/autos/";
+  if (query) ciUrl = "https://www.clasificadosisla.com/autos/?q=" + encodeURIComponent(query);
+  addLink("ClasificadosIsla", ciUrl, "Filtrado");
+
+  // Craigslist
+  let clUrl = "https://puertorico.craigslist.org/search/cta?";
+  const clParams = [];
+  if (query) clParams.push("query=" + encodeURIComponent(query));
+  if (maxPrice && maxPrice !== "999999") clParams.push("max_price=" + maxPrice);
+  if (yearFrom && yearFrom !== "0") clParams.push("min_auto_year=" + yearFrom);
+  if (yearTo && yearTo !== "2030") clParams.push("max_auto_year=" + yearTo);
+  clUrl += clParams.join("&");
+  addLink("Craigslist PR", clUrl, "Filtrado");
+
+  // Facebook
+  let fbUrl = "https://www.facebook.com/marketplace/sanjuan/search/?query=" + encodeURIComponent(query || "carros");
+  if (maxPrice && maxPrice !== "999999") fbUrl += "&maxPrice=" + maxPrice;
+  addLink("Facebook Marketplace", fbUrl, "Área San Juan");
+
+  // Google
+  const gUrl = "https://www.google.com/search?q=" + encodeURIComponent(query + " carro Puerto Rico clasificados OR venta");
+  addLink("Google", gUrl, "Más opciones");
+}
+
+function addLink(site, url, note) {
+  const div = document.createElement('div');
+  div.className = 'link-card';
+  div.innerHTML = `
+    <div>
+      <a href="${url}" target="_blank" rel="noopener">${site}</a>
+      <div class="site">${note}</div>
+    </div>
+    <span style="color:#8d99ae">→</span>
+  `;
+  document.getElementById('results').appendChild(div);
+}
+
+function clearFilters() {
+  document.getElementById('make').value = '';
+  document.getElementById('model').value = '';
+  document.getElementById('yearFrom').value = '';
+  document.getElementById('yearTo').value = '';
+  document.getElementById('maxPrice').value = '';
+  document.getElementById('results').innerHTML = '';
+}
+
+function generateAds() {
+  const title = document.getElementById('adTitle').value.trim() || 'Pieza / Part';
+  const price = document.getElementById('adPrice').value || '0';
+  const condition = document.getElementById('adCondition').value;
+  const location = document.getElementById('adLocation').value.trim() || 'Puerto Rico';
+  const desc = document.getElementById('adDesc').value.trim() || 'Buen estado. Más info por mensaje.';
+
+  const conditionES = {
+    'Used': 'Usada',
+    'Good': 'Buena',
+    'Excellent': 'Excelente',
+    'For Parts': 'Para piezas',
+    'New': 'Nueva'
+  }[condition] || condition;
+
+  // Spanish versions
+  const fbES = `🔥 ${title} 🔥\n\nPrecio: $${price}\nCondición: ${conditionES}\nUbicación: ${location}\n\n${desc}\n\n✅ Interesados escribir por WhatsApp o mensaje.\nEnvío disponible en algunos casos.\n\n#CarrosPR #Piezas #VentaPR`;
+
+  const shortES = `${title} - $${price}\n${conditionES} · ${location}\n${desc}\nInteresados DM o WhatsApp.`;
+
+  const coES = `Título: ${title}\nPrecio: $${price}\nCondición: ${conditionES}\nUbicación: ${location}\n\nDescripción:\n${desc}\n\nContacto por mensaje.`;
+
+  // English versions
+  const fbEN = `🔥 ${title} 🔥\n\nPrice: $${price}\nCondition: ${condition}\nLocation: ${location}\n\n${desc}\n\n✅ Interested? Message me or WhatsApp.\nShipping available in some cases.\n\n#CarsPR #Parts #ForSalePR`;
+
+  const shortEN = `${title} - $${price}\n${condition} · ${location}\n${desc}\nInterested? DM or WhatsApp.`;
+
+  const coEN = `Title: ${title}\nPrice: $${price}\nCondition: ${condition}\nLocation: ${location}\n\nDescription:\n${desc}\n\nContact via message.`;
+
+  const results = document.getElementById('adResults');
+  results.innerHTML = `
+    <h3 style="margin:16px 0 8px; font-size:1.1rem;">Anuncios Generados</h3>
+    
+    <div style="margin-bottom:16px;">
+      <strong>Facebook / Instagram (Español)</strong>
+      <button onclick="copyText('fbES')" style="width:auto; padding:6px 12px; font-size:0.85rem; margin-left:8px;">Copiar</button>
+      <pre id="fbES" style="background:#0d1218; padding:12px; border-radius:8px; white-space:pre-wrap; font-size:0.9rem; margin-top:6px;">${fbES}</pre>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <strong>Facebook / Instagram (English)</strong>
+      <button onclick="copyText('fbEN')" style="width:auto; padding:6px 12px; font-size:0.85rem; margin-left:8px;">Copy</button>
+      <pre id="fbEN" style="background:#0d1218; padding:12px; border-radius:8px; white-space:pre-wrap; font-size:0.9rem; margin-top:6px;">${fbEN}</pre>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <strong>WhatsApp / Corto (Español)</strong>
+      <button onclick="copyText('shortES')" style="width:auto; padding:6px 12px; font-size:0.85rem; margin-left:8px;">Copiar</button>
+      <pre id="shortES" style="background:#0d1218; padding:12px; border-radius:8px; white-space:pre-wrap; font-size:0.9rem; margin-top:6px;">${shortES}</pre>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <strong>WhatsApp / Short (English)</strong>
+      <button onclick="copyText('shortEN')" style="width:auto; padding:6px 12px; font-size:0.85rem; margin-left:8px;">Copy</button>
+      <pre id="shortEN" style="background:#0d1218; padding:12px; border-radius:8px; white-space:pre-wrap; font-size:0.9rem; margin-top:6px;">${shortEN}</pre>
+    </div>
+
+    <div style="margin-bottom:16px;">
+      <strong>ClasificadosOnline (Español)</strong>
+      <button onclick="copyText('coES')" style="width:auto; padding:6px 12px; font-size:0.85rem; margin-left:8px;">Copiar</button>
+      <pre id="coES" style="background:#0d1218; padding:12px; border-radius:8px; white-space:pre-wrap; font-size:0.9rem; margin-top:6px;">${coES}</pre>
+    </div>
+
+    <div>
+      <strong>ClasificadosOnline (English)</strong>
+      <button onclick="copyText('coEN')" style="width:auto; padding:6px 12px; font-size:0.85rem; margin-left:8px;">Copy</button>
+      <pre id="coEN" style="background:#0d1218; padding:12px; border-radius:8px; white-space:pre-wrap; font-size:0.9rem; margin-top:6px;">${coEN}</pre>
+    </div>
+  `;
+}
+
+function copyText(id) {
+  const text = document.getElementById(id).innerText;
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Copiado / Copied!');
+  }).catch(() => {
+    // Fallback
+    const range = document.createRange();
+    range.selectNode(document.getElementById(id));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+    document.execCommand('copy');
+    alert('Copiado / Copied!');
+  });
+}
+
+// Install App button
+let deferredPrompt;
+const installBtn = document.getElementById('installBtn');
+const iosInstall = document.getElementById('iosInstall');
+
+// Detect iOS
+const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+
+if (isIOS && !isStandalone) {
+  iosInstall.style.display = 'block';
+}
+
+// Android / Chrome install prompt
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  installBtn.style.display = 'block';
+});
+
+installBtn.addEventListener('click', async () => {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  const { outcome } = await deferredPrompt.userChoice;
+  if (outcome === 'accepted') {
+    installBtn.style.display = 'none';
+  }
+  deferredPrompt = null;
+});
+
+// Register service worker for PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(reg => console.log('SW registered'))
+      .catch(err => console.log('SW failed', err));
+  });
+}
+
+// ===== CRITERIOS DE ALERTA =====
+function saveAlert() {
+  const name = document.getElementById('alertName').value.trim();
+  const price = document.getElementById('alertPrice').value;
+  const make = document.getElementById('alertMake').value;
+  const model = document.getElementById('alertModel').value.trim();
+
+  if (!name) {
+    alert('Ponle un nombre al criterio');
+    return;
+  }
+
+  const alerts = JSON.parse(localStorage.getItem('torqueAlerts') || '[]');
+  alerts.push({ id: Date.now(), name, price, make, model });
+  localStorage.setItem('torqueAlerts', JSON.stringify(alerts));
+
+  document.getElementById('alertName').value = '';
+  document.getElementById('alertPrice').value = '';
+  document.getElementById('alertModel').value = '';
+  renderAlerts();
+}
+
+function renderAlerts() {
+  const alerts = JSON.parse(localStorage.getItem('torqueAlerts') || '[]');
+  const container = document.getElementById('alertList');
+  if (!container) return;
+  if (!alerts.length) {
+    container.innerHTML = '<p class="note">No tienes criterios guardados todavía.</p>';
+    return;
+  }
+
+  container.innerHTML = alerts.map(a => `
+    <div class="link-card" style="flex-direction:column; align-items:flex-start; gap:8px;">
+      <div>
+        <strong>${a.name}</strong>
+        <div class="site">${a.make || 'Cualquier marca'} ${a.model ? '· ' + a.model : ''} ${a.price ? '· Máx $' + a.price : ''}</div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button onclick="checkAlert('${a.id}')" style="width:auto; padding:8px 14px; font-size:0.85rem; margin:0;">Revisar</button>
+        <button onclick="deleteAlert('${a.id}')" style="width:auto; padding:8px 14px; font-size:0.85rem; margin:0; background:#8d99ae;">Eliminar</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function checkAlert(id) {
+  const alerts = JSON.parse(localStorage.getItem('torqueAlerts') || '[]');
+  const a = alerts.find(x => x.id == id);
+  if (!a) return;
+
+  document.getElementById('make').value = a.make || '';
+  document.getElementById('model').value = a.model || '';
+  document.getElementById('maxPrice').value = a.price || '';
+  document.getElementById('yearFrom').value = '';
+  document.getElementById('yearTo').value = '';
+  generateLinks();
+
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
+}
+
+function deleteAlert(id) {
+  let alerts = JSON.parse(localStorage.getItem('torqueAlerts') || '[]');
+  alerts = alerts.filter(x => x.id != id);
+  localStorage.setItem('torqueAlerts', JSON.stringify(alerts));
+  renderAlerts();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderAlerts();
+  renderTemplates();
+  loadChecklist();
+});
+
+// ===== PLANTILLAS =====
+function saveTemplate() {
+  const name = document.getElementById('templateName').value.trim();
+  const price = document.getElementById('templatePrice').value;
+  const text = document.getElementById('templateText').value.trim();
+
+  if (!name || !text) {
+    alert('Pon nombre y texto de la plantilla');
+    return;
+  }
+
+  const templates = JSON.parse(localStorage.getItem('torqueTemplates') || '[]');
+  templates.push({ id: Date.now(), name, price, text });
+  localStorage.setItem('torqueTemplates', JSON.stringify(templates));
+
+  document.getElementById('templateName').value = '';
+  document.getElementById('templatePrice').value = '';
+  document.getElementById('templateText').value = '';
+  renderTemplates();
+}
+
+function renderTemplates() {
+  const templates = JSON.parse(localStorage.getItem('torqueTemplates') || '[]');
+  const container = document.getElementById('templateList');
+  if (!container) return;
+  if (!templates.length) {
+    container.innerHTML = '<p class="note">No tienes plantillas guardadas todavía.</p>';
+    return;
+  }
+
+  container.innerHTML = templates.map(t => `
+    <div class="link-card" style="flex-direction:column; align-items:flex-start; gap:8px;">
+      <div>
+        <strong>${t.name}</strong>
+        <div class="site">${t.price ? 'Precio sugerido: $' + t.price : ''}</div>
+      </div>
+      <div style="display:flex; gap:8px; flex-wrap:wrap;">
+        <button onclick="useTemplate('${t.id}')" style="width:auto; padding:8px 14px; font-size:0.85rem; margin:0;">Usar en Anuncio</button>
+        <button onclick="deleteTemplate('${t.id}')" style="width:auto; padding:8px 14px; font-size:0.85rem; margin:0; background:#8d99ae;">Eliminar</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+function useTemplate(id) {
+  const templates = JSON.parse(localStorage.getItem('torqueTemplates') || '[]');
+  const t = templates.find(x => x.id == id);
+  if (!t) return;
+
+  document.getElementById('adTitle').value = t.name;
+  document.getElementById('adPrice').value = t.price || '';
+  document.getElementById('adDesc').value = t.text;
+  document.getElementById('adTitle').scrollIntoView({ behavior: 'smooth' });
+}
+
+function deleteTemplate(id) {
+  let templates = JSON.parse(localStorage.getItem('torqueTemplates') || '[]');
+  templates = templates.filter(x => x.id != id);
+  localStorage.setItem('torqueTemplates', JSON.stringify(templates));
+  renderTemplates();
+}
+
+// ===== CHECKLIST =====
+function saveChecklist() {
+  const state = {
+    fb: document.getElementById('chkFB').checked,
+    co: document.getElementById('chkCO').checked,
+    wa: document.getElementById('chkWA').checked,
+    ig: document.getElementById('chkIG').checked,
+    tt: document.getElementById('chkTT').checked
+  };
+  localStorage.setItem('torqueChecklist', JSON.stringify(state));
+}
+
+function loadChecklist() {
+  const state = JSON.parse(localStorage.getItem('torqueChecklist') || '{}');
+  if (document.getElementById('chkFB')) document.getElementById('chkFB').checked = !!state.fb;
+  if (document.getElementById('chkCO')) document.getElementById('chkCO').checked = !!state.co;
+  if (document.getElementById('chkWA')) document.getElementById('chkWA').checked = !!state.wa;
+  if (document.getElementById('chkIG')) document.getElementById('chkIG').checked = !!state.ig;
+  if (document.getElementById('chkTT')) document.getElementById('chkTT').checked = !!state.tt;
+}
+
+function resetChecklist() {
+  document.getElementById('chkFB').checked = false;
+  document.getElementById('chkCO').checked = false;
+  document.getElementById('chkWA').checked = false;
+  document.getElementById('chkIG').checked = false;
+  document.getElementById('chkTT').checked = false;
+  saveChecklist();
+}
+</script>
+</body>
+</html>
